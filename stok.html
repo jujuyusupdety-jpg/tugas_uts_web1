@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Katalog Buku - BookStore</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      background: #0f172a;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 30px 20px;
+    }
+
+    .dashboard-card {
+      background: #ffffff;
+      width: 100%;
+      max-width: 960px;
+      border-radius: 20px;
+      padding: 32px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      border-top: 6px solid #2563eb;
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #f1f5f9;
+      padding-bottom: 20px;
+      margin-bottom: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-logo {
+      width: 40px;
+      height: 40px;
+      background: #2563eb;
+      color: #ffffff;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    .brand-title {
+      font-size: 22px;
+      color: #0f172a;
+    }
+
+    .btn-back {
+      background: #f1f5f9;
+      color: #334155;
+      border: 1px solid #cbd5e1;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-back:hover {
+      background: #e2e8f0;
+      color: #0f172a;
+    }
+
+    /* Section Title */
+    .section-header {
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      font-size: 20px;
+      color: #0f172a;
+      margin-bottom: 4px;
+    }
+
+    .section-subtitle {
+      color: #64748b;
+      font-size: 14px;
+    }
+
+    /* Form Container */
+    .form-container {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 14px;
+      padding: 24px;
+      margin-bottom: 36px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-group label {
+      font-size: 13px;
+      font-weight: bold;
+      color: #334155;
+    }
+
+    .form-group input {
+      padding: 10px 14px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .form-group input:focus {
+      border-color: #2563eb;
+    }
+
+    .btn-submit {
+      background: #2563eb;
+      color: #ffffff;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-submit:hover {
+      background: #1d4ed8;
+    }
+
+    /* Table Container */
+    .table-container {
+      width: 100%;
+      overflow-x: auto;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 14px;
+    }
+
+    th {
+      background: #2563eb;
+      color: #ffffff;
+      padding: 14px 16px;
+      font-weight: bold;
+    }
+
+    td {
+      padding: 12px 16px;
+      color: #1e293b;
+      border-bottom: 1px solid #f1f5f9;
+      vertical-align: middle;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:hover td {
+      background: #f8fafc;
+    }
+
+    .book-img {
+      width: 50px;
+      height: 70px;
+      object-fit: cover;
+      border-radius: 6px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="dashboard-card">
+    <!-- Header -->
+    <header class="header">
+      <div class="brand">
+        <div class="brand-logo">K</div>
+        <h1 class="brand-title">Katalog Buku</h1>
+      </div>
+      <a href="dashboard.html" class="btn-back">← Kembali ke Dashboard</a>
+    </header>
+
+    <!-- Form Tambah Stok -->
+    <div class="section-header">
+      <h2 class="section-title">Tambah Stok Buku ➕</h2>
+      <p class="section-subtitle">Masukkan rincian informasi buku baru ke dalam sistem.</p>
+    </div>
+
+    <form class="form-container" onsubmit="event.preventDefault();">
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Judul Buku</label>
+          <input type="text" placeholder="Masukkan judul buku">
+        </div>
+        <div class="form-group">
+          <label>Kode Buku</label>
+          <input type="text" placeholder="Contoh: ASIP4301">
+        </div>
+        <div class="form-group">
+          <label>Kategori / Jenis Buku</label>
+          <input type="text" placeholder="Contoh: Buku Ajar">
+        </div>
+        <div class="form-group">
+          <label>Edisi</label>
+          <input type="text" placeholder="Contoh: 1, 2, 3">
+        </div>
+        <div class="form-group">
+          <label>Harga (Rp)</label>
+          <input type="number" placeholder="Angka saja (contoh: 180000)">
+        </div>
+        <div class="form-group">
+          <label>Jumlah Stok</label>
+          <input type="number" placeholder="Masukkan jumlah stok">
+        </div>
+      </div>
+      <button type="submit" class="btn-submit">Simpan ke Katalog</button>
+    </form>
+
+    <!-- Daftar Tabel Katalog -->
+    <div class="section-header">
+      <h2 class="section-title">Daftar Katalog Buku 📚</h2>
+      <p class="section-subtitle">Daftar stok buku yang saat ini tersedia di toko.</p>
+    </div>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 50px;">No</th>
+            <th style="width: 70px;">Foto</th>
+            <th>Kode</th>
+            <th>Judul Buku</th>
+            <th>Kategori</th>
+            <th>Edisi</th>
+            <th>Harga</th>
+            <th>Stok</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td><img src="img/pengantar_komunikasi.jpg" alt="Buku" class="book-img" onerror="this.src='https://via.placeholder.com/50x70?text=Buku'"></td>
+            <td><b>ASIP4301</b></td>
+            <td>Pengantar Ilmu Komunikasi</td>
+            <td>Buku Ajar</td>
+
+            <td>2</td>
+            <td>Rp 180.000</td>
+            <td>548</td>
+          <tr>
+            <td>2</td>
+            <td><img src="img/manajemen_keuangan.jpg" alt="Buku" class="book-img" onerror="this.src='https://via.placeholder.com/50x70?text=Buku'"></td>
+            <td><b>EKMA4002</b></td>
+            <td>Manajemen Keuangan</td>
+            <td>Buku Ajar</td>
+            <td>3</td>
+            <td>Rp 220.000</td>
+            <td>392</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td><img src="img/kepemimpinan.jpg" alt="Buku" class="book-img" onerror="this.src='https://via.placeholder.com/50x70?text=Buku'"></td>
+            <td><b>EKMA4310</b></td>
+            <td>Kepemimpinan</td>
+            <td>Buku Ajar</td>
+            <td>1</td>
+            <td>Rp 150.000</td>
+            <td>278</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td><img src="img/mikrobiologi.jpg" alt="Buku" class="book-img" onerror="this.src='https://via.placeholder.com/50x70?text=Buku'"></td>
+            <td><b>BIOL4211</b></td>
+            <td>Mikrobiologi Dasar</td>
+            <td>Buku Ajar</td>
+            <td>2</td>
+            <td>Rp 200.000</td>
+            <td>150</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td><img src="img/paud_perkembangan.jpg" alt="Buku" class="book-img" onerror="this.src='https://via.placeholder.com/50x70?text=Buku'"></td>
+            <td><b>PAUD4401</b></td>
+            <td>Perkembangan Anak Usia Dini</td>
+            <td>Buku Ajar</td>
+            <td>4</td>
+            <td>Rp 250.000</td>
+            <td>120</td>
+          </tr>

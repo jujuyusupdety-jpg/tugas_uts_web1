@@ -1,0 +1,245 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tracking Pengiriman - BookStore</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      background: #0f172a;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 30px 20px;
+    }
+
+    .dashboard-card {
+      background: #ffffff;
+      width: 100%;
+      max-width: 860px;
+      border-radius: 20px;
+      padding: 32px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      border-top: 6px solid #d97706; /* Warna amber/kuning khas menu tracking */
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #f1f5f9;
+      padding-bottom: 20px;
+      margin-bottom: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-logo {
+      width: 40px;
+      height: 40px;
+      background: #d97706;
+      color: #ffffff;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    .brand-title {
+      font-size: 22px;
+      color: #0f172a;
+    }
+
+    .btn-back {
+      background: #f1f5f9;
+      color: #334155;
+      border: 1px solid #cbd5e1;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-back:hover {
+      background: #e2e8f0;
+      color: #0f172a;
+    }
+
+    /* Section Title */
+    .section-header {
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      font-size: 20px;
+      color: #0f172a;
+      margin-bottom: 4px;
+    }
+
+    .section-subtitle {
+      color: #64748b;
+      font-size: 14px;
+    }
+
+    /* Form Container */
+    .form-container {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 14px;
+      padding: 24px;
+      margin-bottom: 30px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      font-size: 13px;
+      font-weight: bold;
+      color: #334155;
+    }
+
+    .form-group input {
+      padding: 10px 14px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .form-group input:focus {
+      border-color: #d97706;
+    }
+
+    .btn-submit {
+      background: #d97706;
+      color: #ffffff;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.2s;
+      width: 100%;
+    }
+
+    .btn-submit:hover {
+      background: #b45309;
+    }
+
+    /* Result Box (Contoh Hasil Tracking) */
+    .tracking-result {
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-radius: 14px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .result-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px dashed #fcd34d;
+      padding-bottom: 10px;
+    }
+
+    .result-title {
+      font-weight: bold;
+      color: #92400e;
+      font-size: 15px;
+    }
+
+    .badge-status {
+      background: #d97706;
+      color: #ffffff;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .result-detail {
+      font-size: 14px;
+      color: #451a03;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="dashboard-card">
+    <!-- Header -->
+    <header class="header">
+      <div class="brand">
+        <div class="brand-logo">T</div>
+        <h1 class="brand-title">Tracking Pengiriman</h1>
+      </div>
+      <a href="dashboard.html" class="btn-back">← Kembali ke Dashboard</a>
+    </header>
+
+    <!-- Form Pencarian Pengiriman -->
+    <div class="section-header">
+      <h2 class="section-title">Cari Pengiriman 📦</h2>
+      <p class="section-subtitle">Lacak status pengiriman pesanan buku Anda dengan memasukkan nomor resi atau Delivery Order.</p>
+    </div>
+
+    <form class="form-container" onsubmit="event.preventDefault();">
+      <div class="form-group">
+        <label>Nomor Delivery Order / Resi</label>
+        <input type="text" placeholder="Contoh: DO001" required>
+      </div>
+      <button type="submit" class="btn-submit">Cari Status Pengiriman</button>
+    </form>
+
+    <!-- Contoh Kartu Hasil Tracking -->
+    <div class="section-header">
+      <h2 class="section-title">Hasil Pelacakan</h2>
+      <p class="section-subtitle">Riwayat perjalanan paket pesanan.</p>
+    </div>
+
+    <div class="tracking-result">
+      <div class="result-header">
+        <span class="result-title">No. DO: DO001 - Budi Santoso</span>
+        <span class="badge-status">Dalam Perjalanan</span>
+      </div>
+      <div class="result-detail">
+        <p><b>Kurir:</b> JNE Express</p>
+        <p><b>Tujuan:</b> Jl. Merdeka No. 45, Bekasi</p>
+        <p><b>Status Terakhir:</b> Paket telah dikirim dari gudang utama BookStore dan sedang dibawa oleh kurir menuju lokasi penerima.</p>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
